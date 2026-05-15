@@ -70,7 +70,7 @@ export default function FAQSection() {
             ● Calculator
           </div>
 
-          <h2 className=" font-clash mb-14 text-center text-[42px] font-semibold leading-[1] tracking-[-2px] text-white md:text-[44px] ">
+          <h2 className=" font-clash mb-14 text-[42px] font-semibold leading-[1] tracking-[-2px] text-white md:text-[44px] ">
             Frequently
             <br />
             Asked Questions.
