@@ -35,17 +35,17 @@ export default function PerformanceSection() {
         <div className="grid gap-8 xl:grid-cols-[2fr_1fr]">
           <div className="rounded-2xl border border-white/15 bg-[#101010] p-8">
             <div className="grid gap-8 lg:grid-cols-[1.35fr_1fr]">
-              <div className="grid gap-8 sm:grid-cols-2">
+              <div className="grid gap-8 xl:grid-cols-2">
                 {stats.map(([label, value, note]) => (
-                  <div key={label} className="rounded-xl bg-black p-8">
+                  <div key={label} className="min-w-0 rounded-xl bg-black p-8">
                     <p className="text-[17px] text-white">{label}</p>
 
                     <h3 className="mt-4 text-[32px] font-black leading-none text-[#00F5A0]">
                       {value}
                     </h3>
 
-                    <div className="mt-5 inline-flex whitespace-nowrap rounded-full border border-[#00F5A0] px-4 py-2 text-xs text-white">
-                      ● {note}
+                    <div className="mt-5 inline-flex max-w-full items-center whitespace-nowrap rounded-full border border-[#00F5A0] px-4 py-2 text-xs text-white">
+                      <span className="truncate">● {note}</span>
                     </div>
                   </div>
                 ))}
