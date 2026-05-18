@@ -12,7 +12,7 @@ export default function TestimonialsSection() {
   const items = [...testimonials, ...testimonials];
 
   return (
-    <section className="relative overflow-hidden bg-black px-6 py-28">
+    <section className="relative overflow-hidden bg-black px-6 py-25">
       <div className="mx-auto max-w-[1700px]">
         <div className="mb-6 flex justify-center">
           <div className="rounded-full border border-[#00F5A0]/30 bg-[#00F5A0]/10 px-5 py-2 text-xs font-semibold text-[#00F5A0]">
