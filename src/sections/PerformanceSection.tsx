@@ -1,5 +1,16 @@
 "use client";
 
+import {
+  ResponsiveContainer,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Bar,
+  Line,
+  ComposedChart,
+} from "recharts";
+
 const stats = [
   ["Win-Rate", "10%", "100% Month Over Month Winrate"],
   ["Avg. Monthly Return", "1.12%", "Consistent Every Month"],
@@ -8,10 +19,35 @@ const stats = [
 ];
 
 const comparisons = [
-  ["Wayond Intelligence Indicator", "307%", 2],
-  ["S&P 500", "31%", 2],
-  ["Bitcoin", "81%", 2],
+  ["Wayond Intelligence Indicator", "307%", 100],
+  ["S&P 500", "31%", 12],
+  ["Bitcoin", "81%", 28],
 ];
+
+const performanceData = [
+  { month: "Jan", realistic: 12, expected: 8, volume: 25 },
+  { month: "Feb", realistic: 28, expected: 18, volume: 34 },
+  { month: "Mar", realistic: 45, expected: 27, volume: 44 },
+  { month: "Apr", realistic: 36, expected: 35, volume: 54 },
+  { month: "May", realistic: 36, expected: 43, volume: 62 },
+  { month: "Jun", realistic: 52, expected: 51, volume: 70 },
+  { month: "Jul", realistic: 54, expected: 59, volume: 78 },
+  { month: "Aug", realistic: 54, expected: 68, volume: 86 },
+  { month: "Sep", realistic: 82, expected: 76, volume: 96 },
+];
+
+function CustomTooltip({ active, payload, label }: any) {
+  if (!active || !payload?.length) return null;
+
+  return (
+    <div className="rounded-lg border border-white/10 bg-white px-3 py-2 text-black shadow-xl">
+      <p className="text-[11px] text-black/50">{label}</p>
+      <p className="text-sm font-semibold">
+        {Number(payload[0].value).toFixed(2)}%
+      </p>
+    </div>
+  );
+}
 
 export default function PerformanceSection() {
   return (
@@ -28,7 +64,6 @@ export default function PerformanceSection() {
         </h2>
 
         <div className="grid gap-5 xl:grid-cols-[1.45fr_0.68fr]">
-          {/* LEFT CARD */}
           <div className="rounded-[26px] border border-white/10 bg-[#0F0F0F] p-5">
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.95fr]">
               <div className="grid gap-6 sm:grid-cols-2">
@@ -47,7 +82,6 @@ export default function PerformanceSection() {
                 ))}
               </div>
 
-              {/* COMPARISON CARD */}
               <div className="rounded-[18px] border border-white/10 bg-black p-5">
                 <h3 className="text-[16px] font-medium leading-snug text-white">
                   Since Launch — Wayond Intelligence Indicator
@@ -57,7 +91,7 @@ export default function PerformanceSection() {
 
                 <div className="mt-7 space-y-6">
                   {comparisons.map(([name, value, width]) => (
-                    <div key={name as string}>
+                    <div key={name}>
                       <div className="mb-3 flex justify-between gap-4 text-[15px] text-white">
                         <span>{name}</span>
                         <span>{value}</span>
@@ -94,7 +128,6 @@ export default function PerformanceSection() {
             </div>
           </div>
 
-          {/* RIGHT CARD */}
           <div className="rounded-[26px] border border-white/10 bg-[#0F0F0F] p-5">
             <div className="mb-7 flex items-center justify-between">
               <h3 className="font-clash text-[24px] font-semibold tracking-[-1px] text-white">
@@ -106,51 +139,82 @@ export default function PerformanceSection() {
               </span>
             </div>
 
-            <div className="rounded-[18px] border border-white/10 bg-black p-5">
-              <svg viewBox="0 0 500 320" className="h-[250px] w-full">
-                <defs>
-                  <linearGradient id="barFade" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
-                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0.04" />
-                  </linearGradient>
-                </defs>
+            <div className="h-[330px] rounded-[18px] border border-white/10 bg-black p-5">
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart data={performanceData}>
+                  <defs>
+                    <linearGradient id="barFade" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
+                      <stop offset="100%" stopColor="#ffffff" stopOpacity="0.04" />
+                    </linearGradient>
 
-                {[60, 120, 180, 240].map((y) => (
-                  <line
-                    key={y}
-                    x1="40"
-                    x2="470"
-                    y1={y}
-                    y2={y}
-                    stroke="white"
-                    strokeOpacity="0.1"
-                    strokeDasharray="10 10"
+                    <filter id="greenGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                      <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  <CartesianGrid
+                    stroke="rgba(255,255,255,0.08)"
+                    strokeDasharray="8 8"
+                    vertical={false}
                   />
-                ))}
 
-                {Array.from({ length: 70 }).map((_, i) => (
-                  <line
-                    key={i}
-                    x1={40 + i * 6}
-                    x2={40 + i * 6}
-                    y1={300}
-                    y2={280 - Math.min(i * 3.5, 220)}
-                    stroke="url(#barFade)"
-                    strokeWidth="1"
+                  <XAxis dataKey="month" hide />
+                  <YAxis hide domain={[0, 100]} />
+
+                  <Tooltip
+                    content={<CustomTooltip />}
+                    cursor={{
+                      stroke: "rgba(0,245,160,0.35)",
+                      strokeDasharray: "4 4",
+                    }}
                   />
-                ))}
 
-                <path
-                  d="M40 250 L105 170 Q130 138 160 175 L190 205 L245 205 Q275 205 295 160 L330 150 L390 150 L470 35"
-                  fill="none"
-                  stroke="#00F5A0"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                  <Bar
+                    dataKey="volume"
+                    barSize={3}
+                    fill="url(#barFade)"
+                    radius={[10, 10, 0, 0]}
+                    isAnimationActive={true}
+                    animationDuration={1000}
+                    animationEasing="ease-out"
+                  />
 
-                <circle cx="470" cy="35" r="7" fill="#00F5A0" />
-              </svg>
+                  <Line
+                    type="monotone"
+                    dataKey="expected"
+                    stroke="rgba(255,255,255,0.28)"
+                    strokeWidth={2}
+                    strokeDasharray="6 6"
+                    dot={false}
+                    isAnimationActive={true}
+                    animationDuration={1200}
+                    animationEasing="ease-out"
+                  />
+
+                  <Line
+                    type="monotone"
+                    dataKey="realistic"
+                    stroke="#00F5A0"
+                    strokeWidth={5}
+                    dot={false}
+                    filter="url(#greenGlow)"
+                    isAnimationActive={true}
+                    animationDuration={1400}
+                    animationEasing="ease-out"
+                    activeDot={{
+                      r: 7,
+                      fill: "#00F5A0",
+                      stroke: "#00F5A0",
+                      strokeWidth: 3,
+                    }}
+                  />
+                </ComposedChart>
+              </ResponsiveContainer>
             </div>
 
             <div className="mt-4 flex gap-8 text-xs text-white">
