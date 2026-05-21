@@ -4,48 +4,42 @@ import { Send, BadgeInfo } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative bg-black px-6 py-24">
+    <section id="about" className="relative bg-black px-4 py-20 sm:px-6 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-[1600px]">
-        <div className="rounded-xl border border-white/10 bg-white/[0.04] px-8 py-8">
-          <div className="mb-5 flex items-start justify-between gap-6">
-            <h2 className=" font-clash mb-14 text-center text-[42px] font-semibold leading-[1] tracking-[-2px] text-white md:text-[44px] ">
-                About Us
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+          <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+            <h2 className="font-clash text-[40px] font-semibold leading-[1] tracking-[-1.5px] text-white sm:text-[48px] md:text-[64px] md:tracking-[-2px]">
+              About Us
             </h2>
 
-            <div className="hidden rounded-full border border-[#00F5A0]/60 bg-[#00F5A0]/10 px-4 py-2 text-xs text-white/90 md:block">
+            <div className="w-fit rounded-full border border-[#00F5A0]/60 bg-[#00F5A0]/10 px-4 py-2 text-[11px] leading-relaxed text-white/90 sm:text-xs">
               ● €25M+ connected capital · 6.000+ Traders Trust Wayond Intelligence Indicator
             </div>
           </div>
 
-          <div className="mt-10 space-y-8">
-            <p className="text-[18px] leading-[1.7] text-white/85">
-            In just two years, Wayond has grown into one of Dubai&apos;s
-            leading Forex media platforms. What has supported this growth is a
-            powerful network of traders, analysts, and industry professionals
-            active at the front line of the industry. And with a strong desire
-            to return this advantage to Wayond members, we developed WIT.
+          <div className="max-w-[1350px] space-y-6 sm:space-y-8">
+            <p className="text-[16px] leading-[1.75] text-white/85 sm:text-[18px] md:text-[22px]">
+              In just two years, Wayond has grown into one of Dubai&apos;s leading Forex
+              media platforms. What has supported this growth is a powerful network of
+              traders, analysts, and industry professionals active at the front line of
+              the industry. And with a strong desire to return this advantage to Wayond
+              members, we developed WIT.
             </p>
 
-            <p className="text-[18px] leading-[1.7] text-white/85">
-            WIT is not just a tool. It is a weapon for traders, built by
-            combining Wayond&apos;s network, knowledge, and practical power.
+            <p className="text-[16px] leading-[1.75] text-white/85 sm:text-[18px] md:text-[22px]">
+              WIT is not just a tool. It is a weapon for traders, built by combining
+              Wayond&apos;s network, knowledge, and practical power.
             </p>
           </div>
 
-          <div className="mt-7 flex flex-wrap gap-4">
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-md bg-[#00F5A0] px-5 py-3 text-sm font-semibold text-black transition hover:scale-105"
-            >
-              <BadgeInfo size={15} className="text-black" />
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a href="#" className="btn-primary w-full sm:w-auto">
+              <BadgeInfo size={17} className="text-black" />
               Instagram
             </a>
 
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-md bg-[#00F5A0] px-5 py-3 text-sm font-semibold text-black transition hover:scale-105"
-            >
-              <Send size={15} className="text-black" />
+            <a href="#" className="btn-primary w-full sm:w-auto">
+              <Send size={17} className="text-black" />
               Telegram
             </a>
           </div>

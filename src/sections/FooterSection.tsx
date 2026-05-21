@@ -4,103 +4,82 @@ import { Zap } from "lucide-react";
 
 export default function FooterSection() {
   return (
-    <footer className="relative bg-black px-6 pb-10 pt-28">
+    <footer
+      id="get-started"
+      className="relative bg-black px-4 pb-8 pt-20 sm:px-6 sm:pt-24 lg:pt-28"
+    >
       <div className="mx-auto max-w-[1600px]">
-        <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr]">
+        <div className="grid gap-14 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
           <div>
-            <h2
-                className="
-                    font-clash
-                    text-[42px]
-                    font-semibold
-                    leading-[1]
-                    tracking-[-2px]
-                    text-white
-                    md:text-[44px]
-                "
-                >
-                Let our algorithm
-                <br />
-                trade for you
+            <h2 className="font-clash max-w-2xl text-[40px] font-semibold leading-[1] tracking-[-1.5px] text-white sm:text-[48px] md:text-[64px] md:tracking-[-2px]">
+              Let our algorithm
+              <br />
+              trade for you
             </h2>
 
-            <p className="mt-5 text-base text-white/50">
+            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/55 sm:text-base">
               Join hundreds of traders already using WAYOND Intelligence Trader.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button className="flex items-center gap-3 rounded-md bg-[#00F5A0] px-8 py-4 text-sm font-semibold text-black shadow-[0_18px_45px_rgba(0,245,160,0.25)]">
-                <Zap size={16} className="text-black" />
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <button className="btn-primary w-full sm:w-auto">
+                <Zap size={17} className="text-black" />
                 Activate for free
               </button>
 
-              <button className="rounded-md bg-gradient-to-r from-[#FFD400] to-[#FF3838] px-8 py-4 text-sm font-semibold text-black">
+              <button className="btn-orange w-full sm:w-auto">
                 Join Wayond Plus
               </button>
             </div>
 
-            <p className="mt-16 text-lg leading-snug text-white/80">
+            <p className="mt-12 text-[18px] leading-snug text-white/80 sm:mt-16 sm:text-xl">
               AI-driven gold market trading.
               <br />
-              <span className="font-bold text-white">
+              <span className="font-semibold text-white">
                 Fully automated, proven results.
               </span>
             </p>
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3">
-            <div>
-              <h3 className="mb-6 font-bold text-white">Page</h3>
-              <ul className="space-y-5 text-white/45">
-                <li>Performance</li>
-                <li>Features</li>
-                <li>About</li>
-                <li>Calculator</li>
-              </ul>
-            </div>
+            <FooterLinks
+              title="Page"
+              items={["Performance", "Features", "About", "Calculator"]}
+            />
 
-            <div className="border-l border-white/10 pl-8">
-              <h3 className="mb-6 font-bold text-white">Legal</h3>
-              <ul className="space-y-5 text-white/45">
-                <li>Disclaimer</li>
-                <li>License</li>
-                <li>Risk warning</li>
-              </ul>
-            </div>
+            <FooterLinks
+              title="Legal"
+              items={["Disclaimer", "License", "Risk warning"]}
+              bordered
+            />
 
-            <div className="border-l border-white/10 pl-8">
-              <h3 className="mb-6 font-bold text-white">Follow Wayond</h3>
-              <ul className="space-y-5 text-white/45">
-                <li>Telegram</li>
-                <li>Instagram</li>
-                <li>YouTube</li>
-              </ul>
-            </div>
+            <FooterLinks
+              title="Follow Wayond"
+              items={["Telegram", "Instagram", "YouTube"]}
+              bordered
+            />
           </div>
         </div>
 
-        <p className="mt-24 text-base text-white/45">
-            No Telegram? Download the App:{" "}
-
-            <a
-                href="https://apps.apple.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline transition hover:text-white"
-            >
-                IOS
-            </a>
-
-            {" / "}
-
-            <a
-                href="https://play.google.com/store"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline transition hover:text-white"
-            >
-                ANDROID
-            </a>
+        <p className="mt-16 text-[14px] leading-relaxed text-white/45 sm:mt-20 sm:text-base lg:mt-24">
+          No Telegram? Download the App:{" "}
+          <a
+            href="https://apps.apple.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline transition hover:text-white"
+          >
+            IOS
+          </a>{" "}
+          /{" "}
+          <a
+            href="https://play.google.com/store"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline transition hover:text-white"
+          >
+            ANDROID
+          </a>
         </p>
 
         <LegalBlock
@@ -118,19 +97,52 @@ export default function FooterSection() {
           text="Trading Contracts for Difference (CFDs), forex, cryptocurrencies, and other leveraged financial instruments involves substantial risk and may not be suitable for all investors. Market volatility can result in rapid losses, and traders should carefully assess their financial situation and risk tolerance before participating in any trading activity. Wayond Intelligence Indicator does not guarantee profits, winning trades, or future performance. Past performance, projected growth, or historical results do not guarantee future outcomes."
         />
 
-        <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-white/35">
-        © {new Date().getFullYear()} Wayond. All rights reserved. | Wayond Plus
+        <div className="mt-12 border-t border-white/10 pt-6 text-center text-xs leading-relaxed text-white/35 sm:mt-16 sm:pt-8 sm:text-sm">
+          © {new Date().getFullYear()} Wayond. All rights reserved. | Wayond Plus
         </div>
       </div>
     </footer>
   );
 }
 
+function FooterLinks({
+  title,
+  items,
+  bordered,
+}: {
+  title: string;
+  items: string[];
+  bordered?: boolean;
+}) {
+  return (
+    <div
+      className={`${
+        bordered ? "sm:border-l sm:border-white/10 sm:pl-8" : ""
+      }`}
+    >
+      <h3 className="mb-5 font-semibold text-white sm:mb-6">{title}</h3>
+
+      <ul className="space-y-4 text-sm text-white/45 sm:space-y-5">
+        {items.map((item) => (
+          <li key={item} className="transition hover:text-white">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function LegalBlock({ title, text }: { title: string; text: string }) {
   return (
-    <div className="mt-8">
-      <h4 className="mb-3 text-base text-white/70">{title}</h4>
-      <p className="text-xs leading-relaxed text-white/35">{text}</p>
+    <div className="mt-8 sm:mt-10">
+      <h4 className="mb-3 text-sm font-medium text-white/70 sm:text-base">
+        {title}
+      </h4>
+
+      <p className="text-[11px] leading-[1.8] text-white/35 sm:text-xs md:text-[13px]">
+        {text}
+      </p>
     </div>
   );
 }
